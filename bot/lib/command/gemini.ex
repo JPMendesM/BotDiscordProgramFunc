@@ -1,7 +1,7 @@
 defmodule Bot.Command.Gemini do
 
   def handle_gemini(msg) do
-    # Usamos parts: 2 para garantir que a pergunta inteira fique junta no segundo elemento da lista
+
     case msg.content |> String.trim() |> String.split(" ", parts: 2) do
       ["!gemini"] ->
         "Use o comando como: !gemini <sua mensagem/prompt aqui>"
@@ -25,7 +25,6 @@ defmodule Bot.Command.Gemini do
       {:ok, response} ->
         case Jason.decode(response.body) do
           {:ok, json} ->
-            # Adicionei uma pequena validação de erro no padrão do seu CEP
             if Map.has_key?(json, "error") do
               "❌ Tive um problema com a API: #{json["error"]["message"]}"
             else
