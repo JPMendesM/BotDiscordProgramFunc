@@ -14,8 +14,11 @@ defmodule Bot.Command.Gemini do
     end
   end
 
-  defp create_response(prompt) do
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyDLHk93z78KHeiGrC5jQfEYhzDH17lFv0s"
+defp create_response(prompt) do
+    # Puxa a chave oculta do config.exs
+    api_key = Application.get_env(:bot, :gemini_key)
+
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=#{api_key}"
 
     body = Jason.encode!(%{
       contents: [%{parts: [%{text: prompt}]}]
