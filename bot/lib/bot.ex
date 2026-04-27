@@ -16,6 +16,9 @@ defmodule Bot do
 
        String.starts_with?(msg.content, "!cat") -> Message.create(msg.channel_id, Bot.Command.Animal.handle_cat(msg))
 
+       # Antes: Bot.Command.Gemini.handle.gemini(msg)
+       String.starts_with?(msg.content, "!gemini") -> Message.create(msg.channel_id, Bot.Command.Gemini.handle_gemini(msg))
+
       true -> :ignore
     end
 
