@@ -39,7 +39,7 @@ defmodule Bot.Command.Conversao do
         "❌ Moeda não encontrada."
 
       _ ->
-        "⚠️ Erro ao acessar a API de câmbio."
+        "⚠️ Erro ao acessar a API de câmbio.."
     end
   end
 end
