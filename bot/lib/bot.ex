@@ -18,6 +18,12 @@ defmodule Bot do
 
        String.starts_with?(msg.content, "!gemini") -> Message.create(msg.channel_id, Bot.Command.Gemini.handle_gemini(msg))
 
+       String.starts_with?(msg.content, "!clima") -> Message.create(msg.channel_id, Bot.Command.Clima.handle_clima(msg))
+
+       String.starts_with?(msg.content, "!conv") -> Message.create(msg.channel_id, Bot.Command.Conversao.handle_converter(msg))
+
+
+
       true -> :ignore
     end
 

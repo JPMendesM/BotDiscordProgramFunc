@@ -1,7 +1,5 @@
 defmodule Bot.Command.Gemini do
-
   def handle_gemini(msg) do
-
     case msg.content |> String.trim() |> String.split(" ", parts: 2) do
       ["!gemini"] ->
         "Use o comando como: !gemini <sua mensagem/prompt aqui>"
@@ -14,15 +12,17 @@ defmodule Bot.Command.Gemini do
     end
   end
 
-defp create_response(prompt) do
+  defp create_response(prompt) do
     # Puxa a chave oculta do config.exs
     api_key = Application.get_env(:bot, :gemini_key)
 
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=#{api_key}"
+    url =
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=#{api_key}"
 
-    body = Jason.encode!(%{
-      contents: [%{parts: [%{text: prompt}]}]
-    })
+    body =
+      Jason.encode!(%{
+        contents: [%{parts: [%{text: prompt}]}]
+      })
 
     case HTTPoison.post(url, body, [{"Content-Type", "application/json"}]) do
       {:ok, response} ->
@@ -47,5 +47,4 @@ defp create_response(prompt) do
         "Erro ao conectar com o Gemini 🤖"
     end
   end
-
 end
