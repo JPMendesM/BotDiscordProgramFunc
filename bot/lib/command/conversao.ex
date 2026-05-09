@@ -7,10 +7,6 @@ defmodule Bot.Command.Conversao do
 
       ["!conv", valor, de, para] ->
         converter_moeda(valor, String.upcase(de), String.upcase(para))
-
-      ["!conv", "moedas"] ->
-        listar_moedas()
-
       _ ->
         "Formato inválido! Use: `!conv <valor> <DE> <PARA>` (Ex: !conv 100 USD BRL)"
     end
