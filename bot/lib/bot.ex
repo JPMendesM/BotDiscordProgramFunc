@@ -4,48 +4,73 @@ defmodule Bot do
   alias Nostrum.Api.Message
 
   def handle_event({:MESSAGE_CREATE, msg, _ws}) do
-    cond do
-      String.starts_with?(msg.content, "!ping") ->
-        Message.create(msg.channel_id, "pong!")
+    partes =
+      msg.content
+      |> String.trim()
+      |> String.split(" ", trim: true)
 
-      String.starts_with?(msg.content, "!ppt") ->
-        Message.create(msg.channel_id, Bot.Command.Ppt.handle_ppt(msg))
+    handle_command(partes, msg)
+  end
 
-      String.starts_with?(msg.content, "!cep") ->
-        Message.create(msg.channel_id, Bot.Command.Cep.handle_cep(msg))
+  def handle_event(_event), do: :ignore
 
-      String.starts_with?(msg.content, "!dog") ->
-        Message.create(msg.channel_id, Bot.Command.Animal.handle_dog(msg))
+  defp handle_command(["!ping"], msg) do
+    Message.create(msg.channel_id, "pong!")
+  end
 
-      String.starts_with?(msg.content, "!cat") ->
-        Message.create(msg.channel_id, Bot.Command.Animal.handle_cat(msg))
+  defp handle_command(["!ppt" | _], msg) do
+    Message.create(msg.channel_id, Bot.Command.Ppt.handle_ppt(msg))
+  end
 
-      String.starts_with?(msg.content, "!clima") ->
-        Message.create(msg.channel_id, Bot.Command.Clima.handle_clima(msg))
+  defp handle_command(["!cep" | _], msg) do
+    Message.create(msg.channel_id, Bot.Command.Cep.handle_cep(msg))
+  end
 
-      String.starts_with?(msg.content, "!conv") ->
-        Message.create(msg.channel_id, Bot.Command.Conversao.handle_converter(msg))
+  defp handle_command(["!dog"], msg) do
+    Message.create(msg.channel_id, Bot.Command.Animal.handle_dog(msg))
+  end
 
-      String.starts_with?(msg.content, "!lembrar") ->
-        Message.create(msg.channel_id, Bot.Command.Lembrete.handle_lembrar(msg))
+  defp handle_command(["!cat"], msg) do
+    Message.create(msg.channel_id, Bot.Command.Animal.handle_cat(msg))
+  end
 
-      String.starts_with?(msg.content, "!lembretes") ->
-        Message.create(msg.channel_id, Bot.Command.Lembrete.handle_lembretes(msg))
+  defp handle_command(["!clima" | _], msg) do
+    Message.create(msg.channel_id, Bot.Command.Clima.handle_clima(msg))
+  end
 
-      String.starts_with?(msg.content, "!apagarlb") ->
-        Message.create(msg.channel_id, Bot.Command.Lembrete.handle_apagar(msg))
+  defp handle_command(["!conv" | _], msg) do
+    Message.create(msg.channel_id, Bot.Command.Conversao.handle_converter(msg))
+  end
 
-      String.starts_with?(msg.content, "!curiosidade") ->
-        Message.create(msg.channel_id, Bot.Command.Curiosidade.handle_curiosidade(msg))
+  defp handle_command(["!lembrar" | _], msg) do
+    Message.create(msg.channel_id, Bot.Command.Lembrete.handle_lembrar(msg))
+  end
 
-      String.starts_with?(msg.content, "!ddd") ->
-        Message.create(msg.channel_id, Bot.Command.Ddd.handle_ddd(msg))
+  defp handle_command(["!lembretes"], msg) do
+    Message.create(msg.channel_id, Bot.Command.Lembrete.handle_lembretes(msg))
+  end
 
-      String.starts_with?(msg.content, "!rota") ->
-        Message.create(msg.channel_id, Bot.Command.Rota.handle_rota(msg))
+  defp handle_command(["!apagarlb" | _], msg) do
+    Message.create(msg.channel_id, Bot.Command.Lembrete.handle_apagar(msg))
+  end
 
-      true ->
-        :ignore
-    end
+  defp handle_command(["!curiosidade" | _], msg) do
+    Message.create(msg.channel_id, Bot.Command.Curiosidade.handle_curiosidade(msg))
+  end
+
+  defp handle_command(["!ddd" | _], msg) do
+    Message.create(msg.channel_id, Bot.Command.Ddd.handle_ddd(msg))
+  end
+
+  defp handle_command(["!rota" | _], msg) do
+    Message.create(msg.channel_id, Bot.Command.Rota.handle_rota(msg))
+  end
+
+  defp handle_command(["!comparar" | _], msg) do
+    Message.create(msg.channel_id, Bot.Command.Comparar.handle_comparar(msg))
+  end
+
+  defp handle_command(_, _msg) do
+    :ignore
   end
 end
