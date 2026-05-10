@@ -13,8 +13,7 @@ defmodule Bot.Command.Clima do
   end
 
   def search_weather(cidade) do
-    # Certifique-se de que NÃO existe "ElixirLS.LanguageServer" antes de Application
-    api_key = Application.get_env(:bot, :weather_api_key)
+      api_key = Application.get_env(:bot, :weather_api_key)
 
     url =
       "https://api.openweathermap.org/data/2.5/weather?q=#{URI.encode(cidade)}&appid=#{api_key}&units=metric&lang=pt_br"
@@ -23,11 +22,9 @@ defmodule Bot.Command.Clima do
       {:ok, %{status_code: 200, body: body}} ->
         data = Jason.decode!(body)
 
-        # Extraindo dados do JSON fornecido
         temp = data["main"]["temp"]
         sensacao = data["main"]["feels_like"]
         umidade = data["main"]["humidity"]
-        # Acessando a lista 'weather' e pegando a 'description' do primeiro item
         descricao = data["weather"] |> List.first() |> Map.get("description")
         cidade_nome = data["name"]
 

@@ -1,6 +1,5 @@
 defmodule Bot.Command.Conversao do
   def handle_converter(msg) do
-    # Removido o 'parts: 2' para permitir separar em 4 palavras
     case msg.content |> String.trim() |> String.split(" ") do
       ["!conv"] ->
         "Use o comando como: !conv <valor> <DE> <PARA>"
