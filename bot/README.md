@@ -1,15 +1,21 @@
 # Bot Discord em Elixir
 
-Bot desenvolvido em Elixir utilizando a biblioteca Nostrum para integração com o Discord.
+Bot desenvolvido em Elixir utilizando o framework Nostrum para integração com o Discord.
 
-## Requisitos
+O projeto implementa múltiplos comandos consumindo APIs REST distintas, além de persistência de dados em JSON local utilizando GenServer e Supervisor seguindo os conceitos de OTP.
+
+---
+
+# Requisitos
 
 - Elixir instalado
 - Erlang/OTP instalado
 - Conta no Discord Developer Portal
 - Token do bot Discord
 
-## Configuração
+---
+
+# Configuração
 
 O projeto utiliza um arquivo de exemplo para configuração.
 
@@ -25,9 +31,14 @@ para:
 config/config.exs
 ```
 
-e preencha suas chaves e token do Discord.
+e configure:
 
-## Instalação das dependências
+- Token do bot Discord;
+- Chaves das APIs utilizadas.
+
+---
+
+# Instalação das Dependências
 
 Execute:
 
@@ -35,7 +46,9 @@ Execute:
 mix deps.get
 ```
 
-## Execução do bot
+---
+
+# Execução do Bot
 
 Execute:
 
@@ -43,28 +56,32 @@ Execute:
 mix run --no-halt
 ```
 
-## Estrutura do Projeto
+---
+
+# Estrutura do Projeto
 
 ```text
 lib/
 ├── bot.ex
-└── bot/
-    ├── application.ex
-    ├── store.ex
-    └── command/
-        ├── animal.ex
-        ├── cep.ex
-        ├── clima.ex
-        ├── comparar.ex
-        ├── conversao.ex
-        ├── curiosidade.ex
-        ├── ddd.ex
-        ├── lembrete.ex
-        ├── ppt.ex
-        └── rota.ex
+├── bot/
+│   ├── application.ex
+│   └── store.ex
+└── command/
+    ├── animal.ex
+    ├── cep.ex
+    ├── clima.ex
+    ├── comparar.ex
+    ├── conversao.ex
+    ├── curiosidade.ex
+    ├── ddd.ex
+    ├── lembrete.ex
+    ├── ppt.ex
+    └── rota.ex
 ```
 
-## Comandos obrigatórios
+---
+
+# Comandos Obrigatórios
 
 ```text
 !dog
@@ -75,10 +92,11 @@ lib/
 !lembrar <texto>
 !lembretes
 !curiosidade <cidade>
-
 ```
 
-## Comandos extras
+---
+
+# Comandos Extras
 
 ```text
 !cat
@@ -88,7 +106,9 @@ lib/
 !apagar <numero>
 ```
 
-## Persistência JSON
+---
+
+# Persistência JSON
 
 O sistema de lembretes utiliza persistência em JSON local através do módulo `Bot.Store`.
 
@@ -106,21 +126,26 @@ Exemplos:
 !apagar 1
 ```
 
-## APIs Utilizadas
+---
+
+# APIs Utilizadas
 
 - The Dog API
 - ViaCEP
 - BrasilAPI
+- OpenWeather API
 - ExchangeRate API
 - PokéAPI
 - Wikimedia API
 - Wikipedia API
-- OpenWeather API
 - OpenStreetMap Nominatim
 - OSRM API
 
-## Conceitos utilizados
+---
 
+# Conceitos Utilizados
+
+- Programação Funcional
 - Pattern Matching
 - Pipe Operator (`|>`)
 - Enum
@@ -131,6 +156,8 @@ Exemplos:
 - Consumo de APIs REST
 - Modularização
 
-## Observação
+---
+
+# Observação
 
 O projeto foi desenvolvido utilizando programação funcional em Elixir com organização modular e separação de responsabilidades entre Consumer, Commands e Store.
