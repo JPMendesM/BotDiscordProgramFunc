@@ -1,1 +1,13 @@
-bot/config/config.exs 
+/_build/
+/cover/
+/deps/
+/doc/
+/tmp/
+erl_crash.dump
+*.ez
+bot-*.tar
+
+/.elixir_ls/
+/data/*.json
+
+/config/config.exs
