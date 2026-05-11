@@ -51,6 +51,13 @@ lib/
     ├── lembrete.ex
     ├── ppt.ex
     └── rota.ex
+
+config/
+data/
+test/
+mix.exs
+mix.lock
+README.md
 ```
 
 ## Responsabilidades
@@ -108,10 +115,10 @@ Clone o repositório:
 git clone https://github.com/JPMendesM/BotDiscordProgramFunc.git
 ```
 
-Entre na pasta:
+Entre na pasta do projeto:
 
 ```bash
-cd BotDiscordProgramFunc/bot
+cd BotDiscordProgramFunc
 ```
 
 Instale as dependências:
